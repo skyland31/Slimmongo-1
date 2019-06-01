@@ -32,6 +32,7 @@ class StudentController
               "id" => $value["_id"],
               "Course" => $value["subject_id"],
               "name" => $value["name"],
+              "state" => $value["state"]
             ];
             array_push($arrCourse,$CourseData);
         }
@@ -75,6 +76,7 @@ class StudentController
                 "id" => $value["_id"],
                 "Course" => $value["subject_id"],
                 "name" => $value["name"],
+                "state" => $value["state"]
                 ];
               array_push($arrCourse,$courseData);
             }
