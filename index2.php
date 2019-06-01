@@ -51,7 +51,7 @@
     <br>
     <h1>การลงทะเบียนเรียน ภาคการศึกษาที่ 1/2563</h1><br>
     <form class="form-inline" id="form">
-          <input class="form-control mr-sm-2" type="search" name="stuid" id="name" placeholder="รหัสนักศึกษา" aria-label="Search">
+          <input class="form-control mr-sm-2" type="search" name="stuid" id="idstd" placeholder="รหัสนักศึกษา" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id = "lg">login</button>
           
     </form><br>
@@ -103,7 +103,7 @@
            var data = $(this).serialize();
            $.post("http://localhost/slimmongo-1/search-std", data,
            function (data, textStatus, jqXHR) {
-            window.location.href = "register.php"
+            window.location.href = "register.php?stuid="+$("#idstd").val();
            }
            );    
          });  

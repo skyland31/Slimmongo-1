@@ -59,7 +59,8 @@ class StudentController
                   "id" => $value["_id"],
                   "STDid" => $value["stuid"],
                   "name" => $value["name"],
-                  "gender" => $value["gender"]
+                  "gender" => $value["gender"],
+                  "register" => $value["register"]
                 ];
                array_push($arrStudent,$studentData);
             }
@@ -85,18 +86,11 @@ class StudentController
   }
 
    /*public function insert($request){
-      $name = $request->post('name');
-      $age = $request->post('age');
-      $education[0] = $request->post('education0');
-      $education[1] = $request->post('education1');
-      $education[2] = $request->post('education2');
-      $address['hno'] = $request->post('hno'); 
-      $address['subdistrict'] = $request->post('subdistrict');
-      $address['district'] = $request->post('district');
-      $address['province'] = $request->post('province');
+      $stuid = $request->post('stuid');
+      $course = $request->post('courseid');
       
       $db = new Model();
-      $result = $db->insert($name , $age, $education , $address);
+      $result = $db->insert($stuid , $course);*/
       // $arrStudent = array();
       // if($result) {
       //     $res["error"] = FALSE;
@@ -105,8 +99,8 @@ class StudentController
       //     $res["error"] = TRUE;
       //     $res["message"] = "Failed to add a new friend";
       // }
-      response(200, $result);
-  }
+      //response(200, $result);
+  //}
 
-*/
+
 }

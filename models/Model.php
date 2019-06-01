@@ -42,12 +42,10 @@ class Model {
         return $cursor;
     }
 
-    /*public function insert($name , $idstd, $education , $address){
+    /*public function insert($stuid , $course){
         $document = [
-            "name" => $name,
-            "idstd" => $idstd,
-            "education" => $education,
-            "address" => $address
+            "stuid" => $stuid,
+            "register" => $course
         ];
         
     
@@ -58,7 +56,7 @@ class Model {
         catch (MongoCursorException $e) {
             return false;
         }
-    }
+    }*/
 
- */   
+ 
 }    
