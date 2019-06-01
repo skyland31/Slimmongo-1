@@ -51,16 +51,16 @@
     <br>
     <h1>การลงทะเบียนเรียน ภาคการศึกษาที่ 1/2563</h1><br>
     <form class="form-inline" id="form">
-          <input class="form-control mr-sm-2" type="search" name="stuid" id="name" placeholder="รหัสนักศึกษา" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id = "lg">login</button>
-          
+          <input class="form-control mr-sm-2" type="search" name="courseid" id="name" placeholder="Search" aria-label="Search">
+          <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value = "Search">
     </form><br>
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col" width="200">รหัสศึกษา</th>
-                <th scope="col">ชื่อ-สกุล</th>
-                <th scope="col">เพศ</th>
+                <th scope="col" width="200">รหัสวิชา</th>
+                <th scope="col">ชื่อวิชา</th>
+                <th scope="col">สถานะ</th>
+                <th scope="col"> </th>
             </tr>
         </thead>
         <tbody id="tblData1">
@@ -74,40 +74,47 @@
 
 <script>
     
-    function renderTable(data){
-        var url = "http://localhost/slimmongo-1/student";
-        $.getJSON(url).done(function( data ) {
-            console.log(JSON.stringify(data));
-          
-          var profile = $("#tblData1");
-          profile.empty();
-          $.each(data, function (index, value) { 
-            console.log(value);
-            var g = "";
-            if(value.gender == "M"){
-                g = "ชาย";
-            }
-            else {g = "หญิง"}
-                profile.append('<tr>'
-                + "<td align='center'>"+value.STDid+"</td>"
-                + "<td align='center'>"+value.name+"</td>"
-                + "<td align='center'>"+g+"</td>"
-                + '</tr>')
-          });
+    $(document).ready(function () {
+         
+      $("#form").submit(function (e) { 
+        e.preventDefault();
+        var data = $(this).serialize();
+        $.post("http://localhost/slimmongo-1/search-course", data,
+        function (data, textStatus, jqXHR) {
+          renderTable(data); 
+        }
+        );    
+      });
+      function renderTable(data){
+        var profile = $("#tblData1");
+        profile.empty();
+        $.each(data, function (index, value) { 
+          profile.append('<tr>'
+              + '<th>'+value.Course+'</th>'
+              + '<td>'+value.name+'</td>'
+              +  '<td>'+value.state+'</td>'
+            + '</tr>')
         });
-    }
-    $(function(){
-        renderTable();
-        $("#form").submit(function (e) { 
-           e.preventDefault();
-           var data = $(this).serialize();
-           $.post("http://localhost/slimmongo-1/search-std", data,
-           function (data, textStatus, jqXHR) {
-            window.location.href = "register.php"
-           }
-           );    
-         });  
+           
+      }
+      // $("#btn_insert").click(function(){
+      //     $.post("http://localhost/slimmongo/insert",
+      //       { name : $( "#name" ).val(), 
+      //       age : $( "#age" ).val(), 
+      //       education0 : $( "#education" ).val(), 
+      //       education1 : $( "#education1" ).val(), 
+      //       education2 : $( "#education2" ).val(), 
+      //       hno : $( "#hno" ).val(), 
+      //       subdistrict : $( "#subdistrict" ).val(), 
+      //       district : $( "#district" ).val(), 
+      //       province : $( "#province" ).val()
+      //     }, 
+      //     function(data, status){
+      //           alert("Data: " + data + "\nStatus: " + status);
+      //     });
+      // });
     });
+  
   
   </script>
 
