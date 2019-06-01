@@ -12,16 +12,16 @@ require_once '/controllers/StudentController.php';
     echo json_encode($response, JSON_PRETTY_PRINT);
   }
 
-  $app->get('/hello',['StudentController', 'index']);
-  
-  $app->get('/findByName/:name', function ($name) {
-    StudentController::findByName($name);
-  });
+  $app->get('/student',['StudentController', 'student']);
+  $app->get('/course',['StudentController', 'course']);
 
-  $app->post('/search', function() use($app){
-    StudentController::search($app->request()); //name, age 
-  });
 
+  $app->post('/search-std', function() use($app){
+    StudentController::searchSTD($app->request()); //id-student
+  });
+  $app->post('/search-course', function() use($app){
+    StudentController::searchCourse($app->request()); //id-subject
+  });
    $app->post('/insert', function() use($app){
     StudentController::insert($app->request()); //$name , $age, $education , $address
   });
