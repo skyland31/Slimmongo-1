@@ -12,6 +12,7 @@ class StudentController
                $studentData = [
                   "id" => $value["_id"],
                   "STDid" => $value["stuid"],
+                  "password" => $value["password"],
                   "name" => $value["name"],
                   "gender" => $value["gender"]
                 ];
@@ -53,19 +54,20 @@ class StudentController
       $idstd = $request->post('stuid');
       $db = new Model();
       $cursorSTD = $db->searchSTD($idstd);
-      $arrStudent = [];
+      // $arrStudent = [];
          foreach( $cursorSTD as $key => $value){         
                $studentData = [
                   "id" => $value["_id"],
                   "STDid" => $value["stuid"],
+                  "password" => $value["password"],
                   "name" => $value["name"],
                   "gender" => $value["gender"],
                   "register" => $value["register"]
                 ];
-               array_push($arrStudent,$studentData);
+               // array_push($arrStudent,$studentData);
             }
 
-        response(200, $arrStudent);
+        response(200, $studentData);
    }
    function searchCourse($request){
       $idCourse = $request->post('courseid');

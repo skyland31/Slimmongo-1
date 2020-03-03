@@ -31,7 +31,7 @@
 <body>
 
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.html">Registration</a>
+        <a class="navbar-brand" href="index2.php">Registration</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -54,7 +54,6 @@
     <form class="form-inline" id="form1" >
           <input type="hidden" name="stuid" id="stdidback" value="<?php echo $stuid1?>">
     </form>
-    <form class="form-inline">
         <form class="form-inline" id="form">
           <input type="hidden" name="stuid" id="stdidback" value="<?php echo $stuid1?>">
           <input class="form-control mr-sm-2" type="search" name="courseid" id="name" placeholder="รหัสวิชา" aria-label="Search" >
@@ -99,8 +98,7 @@
                 </div>
             </div>
         </form>
-        
-    </form>
+        <br>
 
 
     <table class="table">

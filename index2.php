@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -16,10 +16,24 @@
     </script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>ระบบลงทะเบียนเรียนออนไลน์</title>
-
     <style>
         th,td {
             text-align: center;
+        }
+        #Home {
+            background-image: url("img/background.jpg");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        html {
+            scroll-behavior: smooth;
+            /*เลื่อนขึ้นลงแบบ animetion*/
+        }
+        #login{
+            padding-top: 80px ;
+            height: 700px;
         }
     </style>
 
@@ -28,70 +42,70 @@
 
 <body>
 
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.html">Registration</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg shadow-sm navbar-light  bg-dark fixed-top">
+        <!-- Navbar Icon Register -->
+        <a class="navbar-brand" style="font-size:20px;color:white;margin-left: 30px;" href="#">Registration</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">ยืนยันการลงทะเบียนเรียน <span
-                            class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="result.html">ผลการลงทะเบียนเรียน <span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-        </div>
     </nav>
+    <div class="container-fluid" id="Home">
+        <div class="row">
+            <div class="col-md col-lg col-sm text-center" style="padding-top:355px;padding-bottom:355px;">
+                <h1 class="text-monospace text-dark">การลงทะเบียนเรียน</h1>
+                <h2 class="text-monospace" style="color: gray;">ภาคการศึกษาที่ 1/2563</h1>
+                    <a class="btn btn-outline-primary" href="#login" id="move-edu" role="button">Try See
+                        Login</a>
+            </div>
+        </div>
+    </div>
         
     <br>
-    <h1>การลงทะเบียนเรียน ภาคการศึกษาที่ 1/2563</h1><br>
-    <form class="form-inline" id="form">
-          <input class="form-control mr-sm-2" type="search" name="stuid" id="idstd" placeholder="รหัสนักศึกษา" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id = "lg">login</button>
-          
-    </form><br>
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col" width="200">รหัสศึกษา</th>
-                <th scope="col">ชื่อ-สกุล</th>
-                <th scope="col">เพศ</th>
-            </tr>
-        </thead>
-        <tbody id="tblData1">
-        </tbody>
-    </table>
-
+    <div id="login" class="container" >
+        <div class="row">
+            <div class="col-md col-lg col-sm bg-white text-center text-monospace" style=" align-content: center;">
+                <h1>Login</h1>
+                <h2 style="color: gray;">Student ID</h2>
+                <form class="form-inline" id="form">
+                    <div class="col-md">
+                        <input class="form-control text-center mr-sm-2" type = "text" name="stuid" id="idstd" required placeholder="ID Student" >
+                        <input class="form-control text-center mr-sm-2" type = "text" name="password" id="password" required placeholder="Password">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id = "lg">login</button>
+                        <button class="btn btn-outline-success my-2 my-sm-0" id = "sh">Show Student</button>
+                    </div>
+                </form>
+            </div>
+    </div>
+    <br>
+    <div id="tableStudent" class="container">
+        <table class="table">
+            <thead >
+                <tr>
+                    <th scope="col" width="200">รหัสศึกษา</th>
+                    <th scope="col">ชื่อ-สกุล</th>
+                </tr>
+            </thead>
+            <tbody id="tblData1">
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>
-
-
 <script>
     
-    function renderTable(data){
+    function renderTable(){
         var url = "http://localhost/slimmongo-1/student";
         $.getJSON(url).done(function( data ) {
-            console.log(JSON.stringify(data));
-          
+            // console.log(JSON.stringify(data));
           var profile = $("#tblData1");
           profile.empty();
           $.each(data, function (index, value) { 
-            console.log(value);
-            var g = "";
-            if(value.gender == "M"){
-                g = "ชาย";
-            }
-            else {g = "หญิง"}
+            // console.log(value);
                 profile.append('<tr>'
                 + "<td align='center'>"+value.STDid+"</td>"
                 + "<td align='center'>"+value.name+"</td>"
-                + "<td align='center'>"+g+"</td>"
                 + '</tr>')
           });
         });
@@ -101,12 +115,35 @@
         $("#form").submit(function (e) { 
            e.preventDefault();
            var data = $(this).serialize();
+           var id = $('#idstd').val();
            $.post("http://localhost/slimmongo-1/search-std", data,
            function (data, textStatus, jqXHR) {
-            window.location.href = "register.php?stuid="+$("#idstd").val();
-           }
-           );    
+                console.log(JSON.stringify(data));
+                var password = data.password;
+                var password_input = $("#password").val();
+                console.log(password_input + " = " + password);
+                if(password_input == password){
+                    alert("Login สำเร็จ");
+                    window.location.href = "register.php?stuid="+$("#idstd").val(); 
+                }
+                else {
+                    alert("กรุณาตรวจสอบ ID Student และ Password");
+                }
+                    // 
+                    // $.each(data, function (index, value) { 
+                    //     console.log(value);
+                    //     alert(data);
+                    // });
+            }
+           );   
+           
+            
          });  
+         $('#tableStudent').hide();
+         $('#sh').click(function (e) { 
+             e.preventDefault();
+             $('#tableStudent').toggle();
+         });
     });
   
   </script>
