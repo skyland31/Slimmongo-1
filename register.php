@@ -166,7 +166,7 @@
              profile.empty();
              $.each(data, function (index, value) { 
                  var i = 0;
-                 $.each(value.register, function (index, value1) { 
+                 $.each(value, function (index, value1) { 
                     var line = ""
                     line = '<tr>';
                     line += '<th>'+value.STDid+'</th>';

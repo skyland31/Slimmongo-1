@@ -70,7 +70,7 @@
                 <form class="form-inline" id="form">
                     <div class="col-md">
                         <input class="form-control text-center mr-sm-2" type = "text" name="stuid" id="idstd" required placeholder="ID Student" >
-                        <input class="form-control text-center mr-sm-2" type = "text" name="password" id="password" required placeholder="Password">
+                        <input class="form-control text-center mr-sm-2" type = "Password" name="password" id="password" required placeholder="Password">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id = "lg">login</button>
                         <button class="btn btn-outline-success my-2 my-sm-0" id = "sh">Show Student</button>
                     </div>
